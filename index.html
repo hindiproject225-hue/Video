@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>हिंदी प्रोजेक्ट</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+
+    h1 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    .video-container {
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+        margin: 20px 0;
+    }
+
+    video {
+        width: 100%;
+        height:250px;
+        border-radius: 10px;
+        filter: brightness(0.7); /* dim effect */
+    }
+
+    button {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        background-color: #25D366; /* WhatsApp green */
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #128C7E;
+    }
+
+    .feedback-form {
+        display: none;
+        flex-direction: column;
+        width: 80%;
+        max-width: 500px;
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        resize: none;
+        margin-bottom: 10px;
+        width: 100%;
+        height: 100px;
+    }
+</style>
+</head>
+<body>
+
+<h1>हिंदी प्रोजेक्ट</h1>
+
+<div class="video-container">
+    <video src="/InShot_20260129_173736108.mp4" controls poster="/file_00000000be087230b38606a42a8f7455.png"></video>
+</div>
+
+<button id="feedbackBtn">Give Feedback</button>
+
+<div class="feedback-form" id="feedbackForm">
+    <label for="feedback">वीडियो में क्या अच्छा लगा?</label>
+    <textarea id="feedback" placeholder="अपना जवाब यहाँ लिखें..."></textarea>
+    <button id="sendBtn">Send</button>
+</div>
+
+<script>
+    const feedbackBtn = document.getElementById('feedbackBtn');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const sendBtn = document.getElementById('sendBtn');
+    const feedbackInput = document.getElementById('feedback');
+
+    feedbackBtn.addEventListener('click', () => {
+        feedbackForm.style.display = 'flex';
+        feedbackBtn.style.display = 'none';
+    });
+
+    sendBtn.addEventListener('click', () => {
+        const message = encodeURIComponent(feedbackInput.value);
+        const phone = "9297159969"; // तुम्हारा नंबर
+        if(message.trim() === "") {
+            alert("कृपया अपना फीडबैक लिखें।");
+            return;
+        }
+        const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+        window.open(whatsappURL, "_blank");
+    });
+</script>
+
+</body>
+</html>
